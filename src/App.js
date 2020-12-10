@@ -5,10 +5,11 @@ import Login from './containers/Login/Login';
 function App() {
   return (
     <>
-      <h1 className={styles.header}>TaskBox</h1>
+      <div className={styles.header}>
+        <h1 >TaskBox</h1>
+      </div>
       <Login />
     </>
-    //Login Page
       //signup
           //signup form
 

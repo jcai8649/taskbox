@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import styles from './Login.module.css';
+import { Button, Input } from '@material-ui/core';
 
 export default function Login() {
 
@@ -25,9 +26,18 @@ export default function Login() {
         <div className={styles.Auth}>
             <h1>Login In</h1>
             <form onSubmit={submitHandler}>
-                <input type='text' name='email' placeholder='email'></input>
-                <input type='password' name='pass' placeholder='password'></input>
-                <button>Login</button>
+                <div>
+                    <Input type='text' name='email' placeholder='email'></Input>
+                </div>
+                <div>
+                    <Input type='password' name='pass' placeholder='password'></Input>
+                </div>
+                <div>
+                    <Button>Login</Button>
+                </div>
+                <div>
+                    <Button>Sign Up</Button>
+                </div>
             </form>
         </div>
     )

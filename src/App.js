@@ -8,16 +8,16 @@ function App() {
       <div className={styles.header}>
         <h1 >TaskBox</h1>
       </div>
-      <Login />
-    </>
-      //signup
+      <Login/>
+      {/* //signup
           //signup form
 
     //User Page
       //profile pic
       //task list
       //add task
-        //task
+        //task */}
+    </>
   );
 }
 

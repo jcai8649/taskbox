@@ -24,7 +24,7 @@ export default function Login() {
 
     return (
         <div className={styles.Auth}>
-            <h1>Login In</h1>
+            <h1>Sign In</h1>
             <form onSubmit={submitHandler}>
                 <div>
                     <Input type='text' name='email' placeholder='email'></Input>
@@ -33,7 +33,7 @@ export default function Login() {
                     <Input type='password' name='pass' placeholder='password'></Input>
                 </div>
                 <div>
-                    <Button>Login</Button>
+                    <Button type="submit">Login</Button>
                 </div>
                 <div>
                     <Button>Sign Up</Button>

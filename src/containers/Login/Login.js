@@ -11,14 +11,13 @@ export default function Login() {
     }
 
     const postUserHandler = () => {
-        
         const loginData = {
             email: "Mel111@gmail.com",
             password: "140378megA"
         }
         axios.post('https://cai-task-manager.herokuapp.com/users/login', loginData)
         .then(response => {
-            console.log(response.data)
+            console.log(response.data.user)
         });
     }
 
@@ -42,3 +41,8 @@ export default function Login() {
         </div>
     )
 }
+
+
+
+
+

@@ -1,9 +1,13 @@
-import React from 'react';
+import {React, useState} from 'react';
 import axios from 'axios';
 import styles from './Login.module.css';
 import { Button, Input } from '@material-ui/core';
 
 export default function Login() {
+
+    const [loginInfo, setLogin] = useState({
+        isLogin: false,
+    })
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -15,9 +19,11 @@ export default function Login() {
             email: "Mel111@gmail.com",
             password: "140378megA"
         }
+
         axios.post('https://cai-task-manager.herokuapp.com/users/login', loginData)
         .then(response => {
-            console.log(response.data.user)
+            setLogin({isLogin: true})
+            console.log(`Is login! ${loginInfo.isLogin}`)
         });
     }
 

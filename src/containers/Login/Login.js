@@ -5,9 +5,15 @@ import { Button, Input } from '@material-ui/core';
 
 export default function Login() {
 
-    const [loginInfo, setLogin] = useState({
-        isLogin: false,
+    const [login, setLogin] = useState({
+        isLogin: false
     })
+
+    const [loginData, setLoginData] = useState({
+        email: null,
+        password: null
+    })
+
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -15,15 +21,11 @@ export default function Login() {
     }
 
     const postUserHandler = () => {
-        const loginData = {
-            email: "Mel111@gmail.com",
-            password: "140378megA"
-        }
 
         axios.post('https://cai-task-manager.herokuapp.com/users/login', loginData)
         .then(response => {
             setLogin({isLogin: true})
-            console.log(`Is login! ${loginInfo.isLogin}`)
+            console.log(`Is login! ${loginData.email}`)
         });
     }
 
@@ -32,10 +34,10 @@ export default function Login() {
             <h1>Sign In</h1>
             <form onSubmit={submitHandler}>
                 <div>
-                    <Input type='text' name='email' placeholder='email'></Input>
+                    <Input type='text' name='email'  onChange={ e => {setLoginData({...loginData, email: e.target.value})}}placeholder='email'></Input>
                 </div>
                 <div>
-                    <Input type='password' name='pass' placeholder='password'></Input>
+                    <Input type='password' onChange={e => setLoginData({...loginData, password: e.target.value})}name='pass' placeholder='password'></Input>
                 </div>
                 <div>
                     <Button type="submit">Login</Button>

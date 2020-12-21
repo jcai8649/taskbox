@@ -2,6 +2,7 @@ import {React, useState} from 'react';
 import axios from 'axios';
 import styles from './Login.module.css';
 import { Button, Input } from '@material-ui/core';
+import TaskList from '../../components/TaskList/TaskList';
 
 export default function Login() {
 
@@ -12,6 +13,9 @@ export default function Login() {
         password: ''
     })
 
+    const [userData, setUserData] = useState({
+        name: null
+    })
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -23,8 +27,8 @@ export default function Login() {
 
         axios.post('https://cai-task-manager.herokuapp.com/users/login', loginData)
         .then(response => {
-            setLogin({isLogin: true})
-            console.log(`Welcome, ${response.data.user.name}`)
+            setLogin(true)
+            setUserData({name: response.data.user.name})
         });
     }
 
@@ -33,24 +37,35 @@ export default function Login() {
     }
     
     return (
-        <div className={styles.Auth}>
-            <h1>Sign In</h1>
-            <form onSubmit={submitHandler}>
-                <div>
-                    <Input type='text' name='email'  value={loginData.email} onChange={ e => {setLoginData({...loginData, email: e.target.value})}}placeholder='email'></Input>
+        <>
+        {
+            !login ? (
+                <div className={styles.Auth}>
+                    <h1>Sign In</h1>
+                    <form onSubmit={submitHandler}>
+                        <div>
+                            <Input type='text' name='email'  value={loginData.email} onChange={ e => {setLoginData({...loginData, email: e.target.value})}}placeholder='email'></Input>
+                        </div>
+                        <div>
+                            <Input type='password' value={loginData.password} onChange={e => setLoginData({...loginData, password: e.target.value})}name='pass' placeholder='password'></Input>
+                        </div>
+                        <div>
+                            <Button type="submit">Login</Button>
+                        </div>
+                        <div>
+                            <Button>Sign Up</Button>
+                        </div>
+                    </form>
                 </div>
+            ) : (
                 <div>
-                    <Input type='password' value={loginData.password} onChange={e => setLoginData({...loginData, password: e.target.value})}name='pass' placeholder='password'></Input>
+                    <TaskList/>
+
                 </div>
-                <div>
-                    <Button type="submit">Login</Button>
-                </div>
-                <div>
-                    <Button>Sign Up</Button>
-                </div>
-            </form>
-        </div>
-    )
+            )
+        }
+        </>
+    );
 }
 
 

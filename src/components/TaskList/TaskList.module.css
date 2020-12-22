@@ -1,0 +1,18 @@
+.TaskList {
+    margin: 100px auto;
+    width: 40%;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 2px 3px #ccc;
+    border: 1px solid #eee;
+    padding: 20px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: space-between;
+    border-radius: 30px;
+}
+
+.AddTaskButtonDiv {
+    display: flex;
+    align-self: flex-end;
+}

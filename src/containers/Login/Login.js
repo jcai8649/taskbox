@@ -2,7 +2,7 @@ import {React, useState} from 'react';
 import axios from 'axios';
 import styles from './Login.module.css';
 import { Button, Input } from '@material-ui/core';
-import TaskList from '../../components/TaskList/TaskList';
+import UserPage from '../UserPage/UserPage';
 
 export default function Login() {
 
@@ -13,22 +13,34 @@ export default function Login() {
         password: ''
     })
 
-    const [userData, setUserData] = useState({
-        name: null
-    })
+    const [userData, setUserData] = useState({})
 
     const submitHandler = (e) => {
         e.preventDefault();
         postUserHandler();
         resetLoginDataHandler();
     }
-
+ 
     const postUserHandler = () => {
-
         axios.post('https://cai-task-manager.herokuapp.com/users/login', loginData)
         .then(response => {
+            const user = response.data.user
             setLogin(true)
-            setUserData({name: response.data.user.name})
+            setUserData({...user})
+            getTaskHandler()
+        }).catch((error) => {
+            console.log(error)
+        })
+
+
+
+    }
+
+    const getTaskHandler = () => {
+        axios.get('https://cai-task-manager.herokuapp.com/tasks?owner=' + '5fcebb0bf2494d00178f03ea')
+        .then(response => console.log(response))
+        .catch((error) => {
+            console.log(error)
         });
     }
 
@@ -58,9 +70,9 @@ export default function Login() {
                     </form>
                 </div>
             ) : (
-                <div>
-                    <TaskList/>
 
+                <div>
+                    <UserPage/>
                 </div>
             )
         }

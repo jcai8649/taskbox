@@ -1,0 +1,7 @@
+.addButton{
+    background-color: #007bff;
+}
+
+.addButton:hover{
+    background-color: rgb(120, 203, 252);
+}

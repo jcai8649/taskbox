@@ -10,3 +10,8 @@
     flex-flow: column nowrap;
     align-content: space-between;
 }
+
+.Loader {
+    margin: 250px auto;
+    text-align: center;
+}

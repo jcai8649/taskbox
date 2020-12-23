@@ -1,8 +1,10 @@
 import {React, useState} from 'react';
 import axios from 'axios';
 import styles from './Login.module.css';
-import { Button, Input } from '@material-ui/core';
+import { Button, Input, CircularProgress } from '@material-ui/core';
 import UserPage from '../UserPage/UserPage';
+
+
 
 export default function Login() {
 
@@ -13,7 +15,9 @@ export default function Login() {
         password: ''
     })
 
-    const [userData, setUserData] = useState({})
+    const [userData, setUserData] = useState({
+        isLoading: false
+    })
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -22,12 +26,12 @@ export default function Login() {
     }
  
     const postUserHandler = () => {
+        setUserData({isLoading: true})
         axios.post('https://cai-task-manager.herokuapp.com/users/login', loginData)
         .then(response => {
             const user = response.data.user
             setLogin(true)
-            setUserData({...user})
-            getTaskHandler()
+            setUserData({isLoading: false, ...user})
         }).catch((error) => {
             console.log(error)
         })
@@ -51,7 +55,11 @@ export default function Login() {
     return (
         <>
         {
-            !login ? (
+            userData.isLoading ? (
+                <div className={styles.Loader}>
+                    <CircularProgress color="primary" />
+                </div>
+            ) : !login ? (
                 <div className={styles.Auth}>
                     <h1>Sign In</h1>
                     <form onSubmit={submitHandler}>

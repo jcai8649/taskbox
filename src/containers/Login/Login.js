@@ -29,24 +29,23 @@ export default function Login() {
         setUserData({isLoading: true})
         axios.post('https://cai-task-manager.herokuapp.com/users/login', loginData)
         .then(response => {
+            console.log(response)
             const user = response.data.user
+            const token = response.data.token
             setLogin(true)
-            setUserData({isLoading: false, ...user})
+            setUserData({isLoading: false, ...user, token})
+            return axios.get(`https://cai-task-manager.herokuapp.com/tasks` , {
+                headers: {
+                  'Authorization': `Bearer ${token}`
+                }
+              })
+            .then(response => console.log(response))
         }).catch((error) => {
+            setUserData({isLoading: false})
             console.log(error)
         })
-
-
-
     }
 
-    const getTaskHandler = () => {
-        axios.get('https://cai-task-manager.herokuapp.com/tasks?owner=' + '5fcebb0bf2494d00178f03ea')
-        .then(response => console.log(response))
-        .catch((error) => {
-            console.log(error)
-        });
-    }
 
     const resetLoginDataHandler = () => {
         setLoginData({email: '', password: ''})
@@ -81,6 +80,7 @@ export default function Login() {
 
                 <div>
                     <UserPage/>
+                    {console.log(userData._id)}
                 </div>
             )
         }

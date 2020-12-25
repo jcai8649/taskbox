@@ -1,13 +1,9 @@
 import React from 'react'
 import styles from './Task.module.css'
 
-function Task() {
+function Task({description}) {
     return (
-        <ul className={styles.Task}>
-            <li>Go Shopping</li>
-            <li>Workout</li>
-            <li>Eat cheesecake</li>
-        </ul>
+        <li>{description}</li>
     )
 }
 

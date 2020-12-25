@@ -15,8 +15,9 @@ export default function Login() {
         password: ''
     })
 
+    const [isLoading, setIsLoading] = useState(false)
+
     const [userData, setUserData] = useState({
-        isLoading: false
     })
 
     const submitHandler = (e) => {
@@ -24,24 +25,29 @@ export default function Login() {
         postUserHandler();
         resetLoginDataHandler();
     }
+
+    const [taskData, setTaskData] = useState(null)
  
     const postUserHandler = () => {
-        setUserData({isLoading: true})
+        setIsLoading(true)
         axios.post('https://cai-task-manager.herokuapp.com/users/login', loginData)
         .then(response => {
             console.log(response)
             const user = response.data.user
             const token = response.data.token
             setLogin(true)
-            setUserData({isLoading: false, ...user, token})
+            setUserData({...user, token})
             return axios.get(`https://cai-task-manager.herokuapp.com/tasks` , {
                 headers: {
                   'Authorization': `Bearer ${token}`
                 }
               })
-            .then(response => console.log(response))
+            .then(response =>  {
+                setTaskData({...response.data})
+                setIsLoading(false)
+            })
         }).catch((error) => {
-            setUserData({isLoading: false})
+            setIsLoading(false)
             console.log(error)
         })
     }
@@ -54,7 +60,7 @@ export default function Login() {
     return (
         <>
         {
-            userData.isLoading ? (
+            isLoading ? (
                 <div className={styles.Loader}>
                     <CircularProgress color="primary" />
                 </div>
@@ -77,10 +83,8 @@ export default function Login() {
                     </form>
                 </div>
             ) : (
-
                 <div>
-                    <UserPage/>
-                    {console.log(userData._id)}
+                    <UserPage taskData={taskData} username={userData.name}/>
                 </div>
             )
         }

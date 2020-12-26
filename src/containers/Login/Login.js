@@ -20,14 +20,15 @@ export default function Login() {
     const [userData, setUserData] = useState({
     })
 
+    
+    const [taskData, setTaskData] = useState(null)
+    
     const submitHandler = (e) => {
         e.preventDefault();
         postUserHandler();
         resetLoginDataHandler();
     }
-
-    const [taskData, setTaskData] = useState(null)
- 
+    
     const postUserHandler = () => {
         setIsLoading(true)
         axios.post('https://cai-task-manager.herokuapp.com/users/login', loginData)

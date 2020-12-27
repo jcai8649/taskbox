@@ -1,15 +1,14 @@
 import styles from './App.module.css';
 // import {BrowserRouter as Router, Route} from 'react-router-dom'
+import Navbar from './containers/Navbar/Navbar';
 import Login from './containers/Login/Login';
-import UserPage from './containers/UserPage/UserPage'
+// import UserPage from './containers/UserPage/UserPage'
 
 
 function App() {
   return (
     <>
-      <div className={styles.header}>
-        <h1 >TaskBox</h1>
-      </div>
+      <Navbar/>
 
       {/* <UserPage/> */}
       <Login/>

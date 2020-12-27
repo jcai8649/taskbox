@@ -1,17 +1,6 @@
-const store = {
-    login: {
+import {createStore} from 'redux';
+import reducer from './reducer';
 
-    },
+const store = createStore(reducer);
 
-    loginData: {
-        email: '',
-        password: ''
-    },
-
-    isLoading: false,
-
-    userData: {},
-
-    taskData: {}
-
-}
+export default store;

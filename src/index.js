@@ -2,30 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import store from './store';
-import * as actions from './actionTypes';
-import {login} from './actions';
+import {createStore, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
+import reducer from './reducer';
+import thunk from 'redux-thunk';
 
-const unsubscribe = store.subscribe(() => {
-  console.log("STORE CHANGED!", store.getState())
-})
-
-store.dispatch(login('itME', 'THESENUTS'))
-
-store.dispatch({
-  type: actions.REMOVE_USER
-})
-
-unsubscribe()
-
-store.dispatch(login('PLAYME', 'GAAAAAAY'))
-
-
-console.log(store.getState())
+const store = createStore(reducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

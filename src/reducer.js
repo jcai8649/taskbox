@@ -15,15 +15,14 @@ export default function reducer(state = intState, action) {
             return {
                 ...state,
                 userData: {
-                    username: action.payload.username,
-                    password: action.payload.password
+                    ...action.payload.user
                 }
             };
 
-        case actions.REMOVE_USER:
+        case actions.LOGOUT:
             return {
                 ...state,
-                userData: {}
+                userData: null
             };
         default:
             return state;

@@ -15,7 +15,7 @@ export default function reducer(state = intState, action) {
             return {
                 ...state,
                 userData: {
-                    ...action.payload.user
+                    ...action.payload
                 }
             };
 

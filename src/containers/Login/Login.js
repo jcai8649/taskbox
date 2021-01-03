@@ -3,8 +3,7 @@ import axios from 'axios';
 import styles from './Login.module.css';
 import { Button, Input, CircularProgress } from '@material-ui/core';
 import UserPage from '../UserPage/UserPage';
-
-
+import {useSelector, useDispatch} from 'react-redux';
 
 export default function Login() {
 
@@ -78,9 +77,7 @@ export default function Login() {
                         <div>
                             <Button type="submit">Login</Button>
                         </div>
-                        <div>
-                            <Button>Sign Up</Button>
-                        </div>
+                        {/* <div>{error}</div> */}
                     </form>
                 </div>
             ) : (
@@ -92,8 +89,4 @@ export default function Login() {
         </>
     );
 }
-
-
-
-
 

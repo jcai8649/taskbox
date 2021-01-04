@@ -1,70 +1,43 @@
 import {React, useState} from 'react';
-import axios from 'axios';
 import styles from './Login.module.css';
 import { Button, Input, CircularProgress } from '@material-ui/core';
 import UserPage from '../UserPage/UserPage';
 import {useSelector, useDispatch} from 'react-redux';
+import {login} from '../../actions';
 
 export default function Login() {
-
-    const [login, setLogin] = useState(false)
+    const dispatch = useDispatch()
+    const state = useSelector(state => state)
 
     const [loginData, setLoginData] = useState({
         email: '',
         password: ''
     })
-
-    const [isLoading, setIsLoading] = useState(false)
-
-    const [userData, setUserData] = useState({
-    })
-
-    
-    const [taskData, setTaskData] = useState(null)
     
     const submitHandler = (e) => {
         e.preventDefault();
         postUserHandler();
         resetLoginDataHandler();
     }
-    
-    const postUserHandler = () => {
-        setIsLoading(true)
-        axios.post('https://cai-task-manager.herokuapp.com/users/login', loginData)
-        .then(response => {
-            console.log(response)
-            const user = response.data.user
-            const token = response.data.token
-            setLogin(true)
-            setUserData({...user, token})
-            return axios.get(`https://cai-task-manager.herokuapp.com/tasks` , {
-                headers: {
-                  'Authorization': `Bearer ${token}`
-                }
-              })
-            .then(response =>  {
-                setTaskData({...response.data})
-                setIsLoading(false)
-            })
-        }).catch((error) => {
-            setIsLoading(false)
-            console.log(error)
-        })
-    }
-
 
     const resetLoginDataHandler = () => {
         setLoginData({email: '', password: ''})
     }
     
+    const postUserHandler = () => {
+        dispatch(login(loginData.email, loginData.password))
+    }
+
+
+    
     return (
         <>
         {
-            isLoading ? (
+            state.loading ? (
                 <div className={styles.Loader}>
                     <CircularProgress color="primary" />
                 </div>
-            ) : !login ? (
+            ) : !state.isLogin ? (
                 <div className={styles.Auth}>
                     <h1>Sign In</h1>
                     <form onSubmit={submitHandler}>
@@ -82,7 +55,7 @@ export default function Login() {
                 </div>
             ) : (
                 <div>
-                    <UserPage taskData={taskData} username={userData.name}/>
+                    <UserPage username={state.userData.user.name} taskData={state.taskData}/>
                 </div>
             )
         }

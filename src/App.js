@@ -8,7 +8,6 @@ import {useDispatch} from 'react-redux';
 import {useEffect} from 'react';
 
 function App() {
-  const dispatch = useDispatch();
 
   return (
     <>

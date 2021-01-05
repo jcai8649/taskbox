@@ -3,9 +3,7 @@ import styles from './App.module.css';
 import Navbar from './containers/Navbar/Navbar';
 import Login from './containers/Login/Login';
 // import UserPage from './containers/UserPage/UserPage'
-import {login} from './actions';
-import {useDispatch} from 'react-redux';
-import {useEffect} from 'react';
+
 
 function App() {
 

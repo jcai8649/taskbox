@@ -1,4 +1,4 @@
-import * as actions from './actionTypes';
+import * as actions from './actions/actionTypes';
 
 const intState = {
     isLogin: false,

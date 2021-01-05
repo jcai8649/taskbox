@@ -31,7 +31,7 @@ export default function ButtonAppBar() {
             Taskbox
             <img className={classes.logo} src={Logo} alt="Taskbox Logo"/>
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit">Sign Up</Button>
         </Toolbar>
       </AppBar>
     </div>

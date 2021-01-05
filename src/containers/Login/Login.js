@@ -3,7 +3,7 @@ import styles from './Login.module.css';
 import { Button, Input, CircularProgress } from '@material-ui/core';
 import UserPage from '../UserPage/UserPage';
 import {useSelector, useDispatch} from 'react-redux';
-import {login} from '../../actions';
+import {login} from '../../store/actions/actions';
 
 export default function Login() {
     const dispatch = useDispatch()

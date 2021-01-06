@@ -1,0 +1,17 @@
+.registerForm {
+    margin: 150px auto;
+    width: 40%;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 2px 3px #ccc;
+    border: 1px solid #eee;
+    padding: 20px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: space-between;
+}
+
+.Loader {
+    margin: 250px auto;
+    text-align: center;
+}

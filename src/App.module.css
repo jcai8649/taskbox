@@ -6,11 +6,3 @@ body {
     background-color: #0001;
 }
 
-.header{
-    text-align: center;
-    width: 100;
-    color: black;
-    background-color: #007bff;
-    padding: 10px;
-    box-shadow: 0 2px 3px #007bff;
-}

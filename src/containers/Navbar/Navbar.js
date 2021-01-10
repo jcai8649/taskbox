@@ -5,7 +5,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Logo from '../../assets/favicon-32x32.png';
+import {useSelector, useDispatch} from 'react-redux';
 import {NavLink} from 'react-router-dom';
+import {logout} from '../../store/actions/actions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar() {
   const classes = useStyles();
 
+  const state = useSelector(state => state);
+  const dispatch = useDispatch();
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -37,7 +42,7 @@ export default function ButtonAppBar() {
             <img className={classes.logo} src={Logo} alt="Taskbox Logo"/>
             </NavLink>
           </Typography>
-          <Button color="inherit"><NavLink to='/signup' className={classes.link}>Sign Up</NavLink></Button>
+          <Button color="inherit" onClick = {() => dispatch(logout())}><NavLink to={state.isLogin ? '/' : '/signup'} className={classes.link}>{state.isLogin ? "Logout" : "Sign Up"}</NavLink></Button>
         </Toolbar>
       </AppBar>
     </div>

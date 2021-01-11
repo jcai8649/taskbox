@@ -4,6 +4,7 @@ import Login from './containers/Login/Login';
 import SignUp from './containers/Signup/Signup';
 import UserPage from './containers/UserPage/UserPage'
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import Error from './components/ErrorPage/Error';
 
 function App() {
 
@@ -23,6 +24,11 @@ function App() {
           <Route path='/signup'>
             <SignUp/>
           </Route>
+
+
+          <Route component={Error} />
+
+
         </Switch>
       </BrowserRouter>
     </>

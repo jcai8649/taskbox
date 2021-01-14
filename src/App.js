@@ -25,10 +25,8 @@ function App() {
             <SignUp/>
           </Route>
 
-
           <Route component={Error} />
-
-
+          
         </Switch>
       </BrowserRouter>
     </>

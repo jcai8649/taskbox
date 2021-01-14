@@ -1,17 +1,42 @@
-import React from 'react'
+import {useState, React, useEffect} from 'react';
 import styles from './TaskList.module.css';
-import Task from '../Task/Task'
-import AddTaskButton from '../../containers/AddTaskButton/AddTaskButton';
+import Task from '../Task/Task';
+import {useSelector, useDispatch} from 'react-redux';
+import {addTask} from '../../store/actions/actions';
+import {Button, Input, CircularProgress } from '@material-ui/core';
+function TaskList() {
 
-function TaskList({taskData}) {
-    console.log(taskData)
+    const state = useSelector(state => state)
+
+    const dispatch = useDispatch()
+
+    const submitTaskHandler = (e) => {
+        e.preventDefault();
+        dispatchTask();
+        resetInput();
+    }
+
+    const dispatchTask = () => {
+        dispatch(addTask(taskDes, state.userData.token))
+    }
+
+    const resetInput = () => {
+        setTaskDes('')
+    }
+
+    const [taskDes, setTaskDes] = useState('')
+
     return (
         <div className={styles.TaskList}>
-            <div className={styles.AddTaskButtonDiv}>
-                <AddTaskButton/>
-            </div>
+            <form className={styles.AddTaskButtonDiv} onSubmit={submitTaskHandler}>
+                <Input type='text' placeholder='Add new task...' onChange={(e) => {setTaskDes(e.target.value)}}/>
+                <div className={styles.addButton}>
+                    <Button variant='outlined' color="primary" type="submit">Add Task</Button>
+                </div>
+            </form>
+
             {
-                Object.entries(taskData).map(([key, task]) => <Task key={key} description={task.description}/>) 
+                Object.entries(state.taskData).map(([key, task]) => <Task key={key} description={task.description}/>) 
             }
         </div>
     )

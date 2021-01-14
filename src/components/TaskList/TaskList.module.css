@@ -14,5 +14,9 @@
 
 .AddTaskButtonDiv {
     display: flex;
-    align-self: flex-end;
+    justify-content: center;
+}
+
+.addButton {
+    margin-left: 15px;
 }

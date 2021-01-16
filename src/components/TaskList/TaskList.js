@@ -3,7 +3,7 @@ import styles from './TaskList.module.css';
 import Task from '../Task/Task';
 import {useSelector, useDispatch} from 'react-redux';
 import {addTask} from '../../store/actions/actions';
-import {Button, Input, CircularProgress } from '@material-ui/core';
+import {Button, Input} from '@material-ui/core';
 function TaskList() {
 
     const state = useSelector(state => state)

@@ -11,12 +11,3 @@
     align-content: space-between;
     border-radius: 30px;
 }
-
-.AddTaskButtonDiv {
-    display: flex;
-    justify-content: center;
-}
-
-.addButton {
-    margin-left: 15px;
-}

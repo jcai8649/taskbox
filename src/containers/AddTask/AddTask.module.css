@@ -1,0 +1,8 @@
+.AddTaskButtonDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.addButton {
+    margin-left: 15px;
+}

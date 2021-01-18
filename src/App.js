@@ -1,4 +1,3 @@
-import styles from './App.module.css';
 import Navbar from './containers/Navbar/Navbar';
 import Login from './containers/Login/Login';
 import SignUp from './containers/Signup/Signup';

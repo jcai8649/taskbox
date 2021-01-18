@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {useSelector} from 'react-redux';
 import * as actions from './actionTypes';
 
 const fetchTask = async (token) => {
@@ -47,7 +46,6 @@ export const addTask = (task, token) => {
 
             const newTaskDataRes = await fetchTask(token)
 
-            console.log(newTaskDataRes)
             dispatch({
                 type: actions.ADD_TASK_SUCCESS,
                 newTaskDataPayload: newTaskDataRes.data
@@ -61,6 +59,35 @@ export const addTask = (task, token) => {
         }
     }
 }
+
+export const deleteTask = (id, token) => {
+    
+    return async (dispatch, getState) => {
+        dispatch({type: actions.DELETE_TASK_REQUEST})
+        try {
+            await axios.delete(`https://cai-task-manager.herokuapp.com/tasks/${id}`, {
+                headers: {
+                  'Authorization': `Bearer ${token}`
+                }
+              }
+            )
+
+            const newTaskDataRes = await fetchTask(token)
+
+            dispatch({
+                type: actions.DELETE_TASK_SUCCESS,
+                newTaskDataPayload: newTaskDataRes.data
+            })
+
+        } catch (error) {
+            dispatch ({
+                type: actions.DELETE_TASK_FAIL,
+                error
+            })
+        }
+    }
+}
+
 
 export const logout = () => {
     return {type: actions.LOGOUT}

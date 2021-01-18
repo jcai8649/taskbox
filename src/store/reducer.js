@@ -65,7 +65,28 @@ export default function reducer(state = intState, action) {
             }
         
 
+            case actions.DELETE_TASK_REQUEST: 
+            return {
+                ...state,
+                loading: true,
+            }
 
+        case actions.DELETE_TASK_SUCCESS: 
+            return {
+                ...state,
+                taskData: {
+                    ...action.newTaskDataPayload
+                },
+                loading: false,
+            }
+
+        case actions.DELETE_TASK_FAIL: 
+            return {
+                ...state,
+                loading: false,
+                error: action.error
+            }
+            
         case actions.LOGOUT:
             return {
                 ...state,

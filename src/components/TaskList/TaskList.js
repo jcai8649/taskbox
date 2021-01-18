@@ -7,7 +7,7 @@ function TaskList({taskData}) {
         <div className={styles.TaskList}>
             <AddTask/>
             {
-                Object.entries(taskData).map(([key, task]) => <Task key={key} description={task.description}/>) 
+                Object.entries(taskData).map(([key, task]) => <Task key={key} taskId={task._id} description={task.description}/>) 
             }
         </div>
     )

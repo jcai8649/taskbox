@@ -41,6 +41,35 @@ export default function reducer(state = intState, action) {
                 isLogin: false
             }
 
+        case actions.SIGNUP_REQUEST: 
+            return {
+                ...state,
+                loading: true,
+                error: null,
+                isLogin: false
+            }
+
+        case actions.SIGNUP_SUCCESS:
+            return {
+                ...state,
+                userData: {
+                    ...action.userPayload
+                },
+                taskData: {
+                    ...action.taskPayload
+                },
+                loading: false,
+                error: null,
+                isLogin: true          
+            };
+        
+        case actions.SIGNUP_FAIL: 
+            return {
+                ...state,
+                loading: false,
+                error: action.error,
+                isLogin: false
+            }
 
         case actions.ADD_TASK_REQUEST: 
             return {
@@ -86,7 +115,7 @@ export default function reducer(state = intState, action) {
                 loading: false,
                 error: action.error
             }
-            
+
         case actions.LOGOUT:
             return {
                 ...state,

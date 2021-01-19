@@ -11,12 +11,12 @@ const fetchTask = async (token) => {
 }
 
 
-export const login = (username, password) => {
+export const login = (email, password) => {
 
     return async (dispatch, getState) => {
         dispatch({type: actions.LOGIN_REQUEST});
         try {
-            const userResponse = await axios.post('https://cai-task-manager.herokuapp.com/users/login', {email: username, password: password})
+            const userResponse = await axios.post('https://cai-task-manager.herokuapp.com/users/login', {email: email, password: password})
             const taskResponse = await fetchTask(userResponse.data.token)
               dispatch({
                   type: actions.LOGIN_SUCCESS,
@@ -60,6 +60,7 @@ export const addTask = (task, token) => {
     }
 }
 
+
 export const deleteTask = (id, token) => {
     
     return async (dispatch, getState) => {
@@ -67,18 +68,18 @@ export const deleteTask = (id, token) => {
         try {
             await axios.delete(`https://cai-task-manager.herokuapp.com/tasks/${id}`, {
                 headers: {
-                  'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token}`
                 }
-              }
+            }
             )
-
+            
             const newTaskDataRes = await fetchTask(token)
-
+            
             dispatch({
                 type: actions.DELETE_TASK_SUCCESS,
                 newTaskDataPayload: newTaskDataRes.data
             })
-
+            
         } catch (error) {
             dispatch ({
                 type: actions.DELETE_TASK_FAIL,
@@ -88,6 +89,26 @@ export const deleteTask = (id, token) => {
     }
 }
 
+export const signUp = (name, email, password) => {
+    
+    return async (dispatch, getState) => {
+        dispatch({type: actions.SIGNUP_REQUEST});
+        try {
+            const userResponse = await axios.post('https://cai-task-manager.herokuapp.com/users', {name: name, email: email, password: password})
+            const taskResponse = await fetchTask(userResponse.data.token)
+              dispatch({
+                  type: actions.SIGNUP_SUCCESS,
+                  userPayload: userResponse.data,
+                  taskPayload: taskResponse.data
+              })
+        } catch(error) {
+            dispatch({
+                type: actions.SIGNUP_FAIL, 
+                error
+            })
+        }
+    }
+}
 
 export const logout = () => {
     return {type: actions.LOGOUT}

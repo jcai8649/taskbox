@@ -16,7 +16,7 @@ function DeleteTask({taskId}) {
 
     return (
         <>
-            <Button variant='contained' color='secondary' onClick={e => deleteHandler()}>Delete</Button>
+            <Button variant='contained' color='secondary' onClick={deleteHandler}>Delete</Button>
         </>
     )
 }

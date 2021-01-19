@@ -16,8 +16,8 @@ const UserPage = ({taskData, username}) => {
 
     return (
         <div className = {styles.UserPage}>
-            <h1>Welcome, {username}</h1>
-            <TaskList taskData={taskData}/>
+            <h1>Welcome, {state.userData.user.name}</h1>
+            <TaskList taskData={state.taskData}/>
         </div>
     )
 }

@@ -4,6 +4,7 @@ import { Button, Input, CircularProgress } from '@material-ui/core';
 import UserPage from '../UserPage/UserPage';
 import {useSelector, useDispatch} from 'react-redux';
 import {login} from '../../store/actions/actions';
+import {Redirect} from 'react-router-dom';
 
 export default function Login() {
     const dispatch = useDispatch()
@@ -54,9 +55,7 @@ export default function Login() {
                     </form>
                 </div>
             ) : (
-                <div>
-                    <UserPage username={state.userData.user.name} taskData={state.taskData}/>
-                </div>
+                <Redirect to='/user'/>
             )
         }
         </>

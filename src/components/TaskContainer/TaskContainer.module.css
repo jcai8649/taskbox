@@ -1,5 +1,5 @@
-.Auth {
-    margin: 150px auto;
+.TaskContainer {
+    margin: 100px auto;
     width: 40%;
     text-align: center;
     background-color: white;
@@ -9,13 +9,5 @@
     display: flex;
     flex-flow: column nowrap;
     align-content: space-between;
-}
-
-.Loader {
-    margin: 250px auto;
-    text-align: center;
-}
-
-.error {
-    color:red;
+    border-radius: 30px;
 }

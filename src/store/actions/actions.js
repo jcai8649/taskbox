@@ -26,7 +26,7 @@ export const login = (email, password) => {
         } catch(error) {
             dispatch({
                 type: actions.LOGIN_FAIL, 
-                error
+                error: "Invalid email or password"
             })
         }
     }

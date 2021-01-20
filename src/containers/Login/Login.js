@@ -29,7 +29,6 @@ export default function Login() {
         dispatch(login(loginData.email, loginData.password))
     }
 
-
     
     return (
         <>
@@ -49,9 +48,9 @@ export default function Login() {
                             <Input type='password' value={loginData.password} onChange={e => setLoginData({...loginData, password: e.target.value})}name='pass' placeholder='password'></Input>
                         </div>
                         <div>
-                            <Button type="submit">Login</Button>
+                            <Button type="submit" disabled={!loginData.email || !loginData.password ? true : false}>Login</Button>
                         </div>
-                        {/* <div>{error}</div> */}
+                        <div className={styles.error}>{state.error ? state.error : ''}</div>
                     </form>
                 </div>
             ) : (

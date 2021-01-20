@@ -33,19 +33,12 @@ function AddTask() {
     return (
         <div>
             {
-                state.loading ? (
-                    <div>
-                        <CircularProgress/>
+                <form className={styles.AddTaskButtonDiv} onSubmit={submitTaskHandler}>
+                    <Input type='text' placeholder='New task...' onChange={(e) => {setTaskDes(e.target.value)}}/>
+                    <div className={styles.addButton}>
+                        <Button variant='outlined' color="primary" type="submit" disabled={!taskDes ? true : false}>Add Task</Button>
                     </div>
-                ) : (
-                    <form className={styles.AddTaskButtonDiv} onSubmit={submitTaskHandler}>
-                        <Input type='text' placeholder='Add new task...' onChange={(e) => {setTaskDes(e.target.value)}}/>
-                        <div className={styles.addButton}>
-                            <Button variant='outlined' color="primary" type="submit">Add Task</Button>
-                        </div>
-                    </form>
-
-                )
+                </form>
             }
         </div>
     )

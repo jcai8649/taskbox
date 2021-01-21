@@ -1,7 +1,6 @@
 import {React, useState} from 'react';
 import styles from './Login.module.css';
 import { Button, Input, CircularProgress } from '@material-ui/core';
-import UserPage from '../UserPage/UserPage';
 import {useSelector, useDispatch} from 'react-redux';
 import {login} from '../../store/actions/actions';
 import {Redirect} from 'react-router-dom';

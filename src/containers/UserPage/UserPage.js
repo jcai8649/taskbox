@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 
 
-const UserPage = ({taskData, username}) => {
+const UserPage = () => {
 
     const state = useSelector(state => state)
 

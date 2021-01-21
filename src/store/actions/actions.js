@@ -104,7 +104,7 @@ export const signUp = (name, email, password) => {
         } catch(error) {
             dispatch({
                 type: actions.SIGNUP_FAIL, 
-                error
+                error: 'Email already taken'
             })
         }
     }

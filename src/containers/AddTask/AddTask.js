@@ -2,7 +2,6 @@ import {useState, React} from 'react';
 import {Button, Input} from '@material-ui/core';
 import styles from './AddTask.module.css';
 import {useSelector, useDispatch} from 'react-redux';
-import {CircularProgress} from '@material-ui/core';
 import {addTask} from '../../store/actions/actions';
 
 

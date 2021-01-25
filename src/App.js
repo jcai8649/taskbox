@@ -12,17 +12,11 @@ function App() {
       <BrowserRouter>
         <Navbar/>
         <Switch>
-          <Route exact path='/'>
-            <Login/>
-          </Route>
+          <Route exact path='/' component={Login} />
 
-          <Route path='/user'>
-            <UserPage/>
-          </Route>
+          <Route path='/user' component={UserPage} />
 
-          <Route path='/signup'>
-            <SignUp/>
-          </Route>
+          <Route path='/signup' component={SignUp} />
 
           <Route component={Error} />
           
